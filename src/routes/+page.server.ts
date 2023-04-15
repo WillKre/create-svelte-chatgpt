@@ -1,7 +1,7 @@
 import { oraPromise } from 'ora';
 import { ChatGPTAPI, ChatGPTError } from 'chatgpt';
 import { error, type Actions } from '@sveltejs/kit';
-import { VITE_OPENAI_API_KEY } from '$env/static/private';
+import { OPENAI_API_KEY } from '$env/static/private';
 import { config } from '$lib/config';
 
 export const actions: Actions = {
@@ -9,7 +9,7 @@ export const actions: Actions = {
 		const formData = await request.formData();
 		const message = formData.get('message');
 		const api = new ChatGPTAPI({
-			apiKey: VITE_OPENAI_API_KEY,
+			apiKey: OPENAI_API_KEY,
 			debug: false
 		});
 
