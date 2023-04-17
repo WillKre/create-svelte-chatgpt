@@ -8,6 +8,16 @@ Includes:
 - [SvelteKit Form Actions](https://kit.svelte.dev/docs/form-actions)
 - [TailwindCSS](https://tailwindcss.com/)
 
+## Getting Started
+
+Create a `.env` file in the root directory and add your ChatGPT API key, Redis URL, and Redis password:
+
+```bash
+OPENAI_API_KEY=sk-API_KEY_HERE
+REDIS_URL=redis://localhost:6379
+REDIS_PASSWORD=redis_password_here
+```
+
 ## Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:

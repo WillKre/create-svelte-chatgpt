@@ -29,11 +29,15 @@
 				</svg>
 			</span>
 			<span class="absolute right-0 bottom-0 pulsating" />
-			<img src={config.receiverImgSrc} alt="" class="w-10 sm:w-16 h-10 sm:h-16 rounded-full" />
+			<img
+				src={config.receiverImgSrc}
+				alt="midjourney generated portrait"
+				class="w-10 sm:w-16 h-10 sm:h-16 rounded-full"
+			/>
 		</div>
 		<div class="flex flex-col leading-tight">
 			<div class="text-2xl mt-1 flex items-center">
-				<span class="text-gray-700 mr-3">{config.name}</span>
+				<span class="text-gray-700 mr-3">{config.nickName}</span>
 			</div>
 			<span class="text-lg text-gray-600">{config.fullName}</span>
 		</div>

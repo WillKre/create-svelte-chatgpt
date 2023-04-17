@@ -12,7 +12,7 @@
 	const hasCodeBlock = codeBlockRegex.test(message.content);
 	const hasInlineCode = inlineCodeRegex.test(message.content);
 
-	let formattedContent = message.content;
+	let formattedContent = message.content.replace(/\n/g, '<br>');
 
 	if (hasCodeBlock) {
 		formattedContent = formattedContent.replace(
@@ -49,7 +49,7 @@
 	</div>
 	<img
 		src={messageType === 'sent' ? config.senderImgSrc : config.receiverImgSrc}
-		alt="My profile"
+		alt={messageType === 'sent' ? 'Sender' : 'Receiver'}
 		class={`w-6 h-6 rounded-full ${messageType === 'sent' ? 'order-2' : 'order-1'}`}
 	/>
 </div>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { afterUpdate } from 'svelte';
 	import { enhance } from '$app/forms';
+	import TextArea from '$lib/components/TextArea.svelte';
 	import Profile from '$lib/components/Profile.svelte';
 	import SubmitButton from '$lib/components/SubmitButton.svelte';
 	import Message from '$lib/components/Message.svelte';
@@ -11,11 +12,11 @@
 	};
 
 	let messages: Message[] = [];
+	let parentMessageId = '';
 	let messageContainer: HTMLElement | null = null;
 
 	function addMessage(message: Message) {
 		messages = [...messages, message];
-		scrollToBottom();
 	}
 
 	function scrollToBottom() {
@@ -53,7 +54,7 @@
 	<div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
 		<div class="relative flex">
 			<form
-				class="w-full"
+				class="w-full relative"
 				method="POST"
 				use:enhance={({ form }) => {
 					const formData = new FormData(form);
@@ -66,25 +67,26 @@
 					});
 
 					return async function ({ result }) {
-						addMessage({
-							type: 'received',
-							content:
-								result.type === 'success'
-									? result?.data?.text || 'N/A'
-									: 'Something went wrong! Please try again later.'
-						});
+						if (result.type === 'success') {
+							// To track the conversation we need to pass the parentMessageId. To do this we can
+							// use the parentMessageId from the response and pass it to an invisible input field
+							// which is then sent to the server on the subsequent request (see `type="hidden"` below)
+							parentMessageId = result?.data?.parentMessageId;
+
+							addMessage({
+								type: 'received',
+								content:
+									result.type === 'success'
+										? result?.data?.text || 'N/A'
+										: 'Something went wrong! Please try again later.'
+							});
+						}
 					};
 				}}
 			>
-				<input
-					name="message"
-					autocomplete="off"
-					placeholder="Write your message!"
-					class="w-full focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-md py-3"
-				/>
-				<div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
-					<SubmitButton />
-				</div>
+				<input type="hidden" name="parentMessageId" bind:value={parentMessageId} />
+				<TextArea />
+				<SubmitButton />
 			</form>
 		</div>
 	</div>
