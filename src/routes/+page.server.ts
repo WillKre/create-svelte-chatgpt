@@ -1,20 +1,12 @@
-import Keyv from 'keyv';
-import KeyvRedis from '@keyv/redis';
-import Redis from 'ioredis';
 import { oraPromise } from 'ora';
 import { ChatGPTAPI, ChatGPTError } from 'chatgpt';
 import { error, type Actions } from '@sveltejs/kit';
-import { OPENAI_API_KEY, REDIS_URL, REDIS_PASSWORD } from '$env/static/private';
 import { config } from '$lib/config';
+import { OPENAI_API_KEY } from '$env/static/private';
+import { getMessageStore } from '$lib/utils/getMessageStore';
 
-// Define the store outside the actions so it's not re-created on every request
-const redisOptions = {
-	url: REDIS_URL || 'redis://localhost:6379',
-	password: REDIS_PASSWORD || undefined
-};
-const redisClient = new Redis(redisOptions.url, { password: redisOptions.password });
-const store = new KeyvRedis(redisClient);
-const messageStore = new Keyv({ store, namespace: 'svelte-chatgpt' });
+// Defined outside of the actions so it's not re-created on every request
+const messageStore = getMessageStore();
 
 export const actions: Actions = {
 	default: async ({ request }) => {

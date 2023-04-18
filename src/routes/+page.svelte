@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { afterUpdate } from 'svelte';
+	import { writable } from 'svelte/store';
 	import { enhance } from '$app/forms';
 	import TextArea from '$lib/components/TextArea.svelte';
 	import Profile from '$lib/components/Profile.svelte';
@@ -9,14 +10,17 @@
 	type Message = {
 		type: 'received' | 'sent';
 		content: string;
+		isLoading?: boolean;
 	};
 
-	let messages: Message[] = [];
+	const messages = writable<Message[]>([]);
 	let parentMessageId = '';
 	let messageContainer: HTMLElement | null = null;
 
-	function addMessage(message: Message) {
-		messages = [...messages, message];
+	function addMessage(message: Message, replaceLast = false) {
+		messages.update((currentMessages) =>
+			replaceLast ? [...currentMessages.slice(0, -1), message] : [...currentMessages, message]
+		);
 	}
 
 	function scrollToBottom() {
@@ -46,7 +50,7 @@
 		bind:this={messageContainer}
 		class="max-h-[50vh] flex flex-col space-y-4 p-3 overflow-y-scroll scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch mt-auto"
 	>
-		{#each messages as message}
+		{#each $messages as message}
 			<Message messageType={message.type} {message} />
 		{/each}
 	</div>
@@ -66,20 +70,29 @@
 						content: message?.toString() || 'N/A'
 					});
 
+					addMessage({
+						type: 'received',
+						content: 'Thinking...',
+						isLoading: true
+					});
+
 					return async function ({ result }) {
 						if (result.type === 'success') {
-							// To track the conversation we need to pass the parentMessageId. To do this we can
-							// use the parentMessageId from the response and pass it to an invisible input field
-							// which is then sent to the server on the subsequent request (see `type="hidden"` below)
+							// To track the conversation we need to pass the parentMessageId. To do this we can use
+							// the parentMessageId from the response and pass it to an invisible input field which
+							// is then sent to the server on the subsequent request (see `<input type="hidden"` below)
 							parentMessageId = result?.data?.parentMessageId;
 
-							addMessage({
-								type: 'received',
-								content:
-									result.type === 'success'
-										? result?.data?.text || 'N/A'
-										: 'Something went wrong! Please try again later.'
-							});
+							addMessage(
+								{
+									type: 'received',
+									content:
+										result.type === 'success'
+											? result?.data?.text || 'N/A'
+											: 'Something went wrong! Please try again later.'
+								},
+								true
+							);
 						}
 					};
 				}}
@@ -92,25 +105,20 @@
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
 	.scrollbar-w-2::-webkit-scrollbar {
-		width: 0.25rem;
-		height: 0.25rem;
+		@apply w-1 h-1;
 	}
 
 	.scrollbar-track-blue-lighter::-webkit-scrollbar-track {
-		--bg-opacity: 1;
-		background-color: #f7fafc;
-		background-color: rgba(247, 250, 252, var(--bg-opacity));
+		@apply bg-slate-200;
 	}
 
 	.scrollbar-thumb-blue::-webkit-scrollbar-thumb {
-		--bg-opacity: 1;
-		background-color: #edf2f7;
-		background-color: rgba(237, 242, 247, var(--bg-opacity));
+		@apply bg-slate-400;
 	}
 
 	.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
-		border-radius: 0.25rem;
+		@apply rounded;
 	}
 </style>

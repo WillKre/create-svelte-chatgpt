@@ -1,5 +1,6 @@
 <script>
 	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 	import './styles.css';
 </script>
 
@@ -10,7 +11,5 @@
 		<slot />
 	</main>
 
-	<footer class="flex flex-col items-center justify-center py-3">
-		<p>Powered by <a href="https://openai.com/" class="font-semibold">OpenAI</a></p>
-	</footer>
+	<Footer />
 </div>

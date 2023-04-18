@@ -5,30 +5,14 @@
 <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
 	<div class="relative flex items-center space-x-4">
 		<div class="relative">
-			<span class="absolute text-green-500 right-0 bottom-0">
-				<svg width="20" height="20" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="20" cy="20" fill="none" r="10" stroke="limegreen" stroke-width="4">
-						<animate
-							attributeName="r"
-							from="8"
-							to="20"
-							dur="1.5s"
-							begin="0s"
-							repeatCount="indefinite"
-						/>
-						<animate
-							attributeName="opacity"
-							from="1"
-							to="0"
-							dur="1.5s"
-							begin="0s"
-							repeatCount="indefinite"
-						/>
-					</circle>
-					<circle cx="20" cy="20" fill="limegreen" r="10" />
-				</svg>
+			<span class="absolute text-green-500 right-1 bottom-1">
+				<span class="relative flex h-3 w-3">
+					<span
+						class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+					/>
+					<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+				</span>
 			</span>
-			<span class="absolute right-0 bottom-0 pulsating" />
 			<img
 				src={config.receiverImgSrc}
 				alt="midjourney generated portrait"
