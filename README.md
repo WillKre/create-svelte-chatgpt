@@ -14,9 +14,7 @@ Features include:
 ### Installation
 
 ```bash
-npx create-svelte-chatgpt my-app
-cd my-app
-npm run dev # Your app will be running at http://localhost:5173/
+npx create-svelte-chatgpt@latest
 ```
 
 ### Configure ChatGPT

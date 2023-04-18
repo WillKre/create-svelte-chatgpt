@@ -13,7 +13,7 @@
 		into your command line and following the prompts:
 	</p>
 
-	<pre class="my-8">npm create svelte@latest</pre>
+	<pre class="my-8">npx create-svelte-chatgpt@latest</pre>
 
 	<p>
 		The page you're looking at is purely static HTML, with no client-side interactivity needed.

@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
-/* eslint-disable @typescript-eslint/no-var-requires */
-const { execSync } = require('child_process');
-const { prompt } = require('enquirer');
-const fs = require('fs');
-const path = require('path');
+import { execSync } from 'child_process';
+import enquirer from 'enquirer';
+import fs from 'fs';
+import path from 'path';
 
 async function main() {
-	const response = await prompt([
+	const response = await enquirer.prompt([
 		{
 			type: 'input',
 			name: 'projectName',
