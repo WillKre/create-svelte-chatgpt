@@ -5,12 +5,22 @@ import KeyvRedis from '@keyv/redis';
 import { REDIS_URL, REDIS_PASSWORD } from '$env/static/private';
 
 export function getMessageStore() {
-	const redisOptions = {
-		url: REDIS_URL || 'redis://localhost:6379',
-		password: REDIS_PASSWORD || undefined
-	};
-	const redisClient = new Redis(redisOptions.url, { password: redisOptions.password });
-	const store = new KeyvRedis(redisClient);
+	let store;
+
+	if (REDIS_URL) {
+		const redisOptions = {
+			url: REDIS_URL,
+			password: REDIS_PASSWORD || undefined
+		};
+		const redisClient = new Redis(redisOptions.url, {
+			password: redisOptions.password
+		});
+		store = new KeyvRedis(redisClient);
+	} else {
+		// Use an in-memory store when Redis connection details are not provided
+		store = new Map();
+	}
+
 	const messageStore = new Keyv({ store, namespace: 'svelte-chatgpt' });
 
 	return messageStore;

@@ -5,8 +5,8 @@
 Features include:
 
 - [ChatGPT](https://platform.openai.com/docs/api-reference) integration using [chatgpt-api](https://github.com/transitive-bullshit/chatgpt-api).
-- [Redis](https://redis.io/) for persistent chat history via [Keyv](https://github.com/jaredwray/keyv).
-- [TailwindCSS](https://tailwindcss.com/) for styling.
+- [Redis](https://redis.io/) for persistent chat history via [Keyv](https://github.com/jaredwray/keyv), falls back to in-memory storage if `REDIS_URL` is not provided in the `.env`.
+- [TailwindCSS](https://tailwindcss.com/) for styling / animations.
 - [Svelte Form Actions](https://kit.svelte.dev/docs/form-actions) utilized in the chat interface.
 
 ## Getting Started
@@ -19,12 +19,14 @@ npx create-svelte-chatgpt@latest
 
 ### Configure ChatGPT
 
-Create a `.env` file in the root directory and add your ChatGPT API key. You can also add a Redis URL and Redis password if you want persistent chat history (e.g. for ChatGPT to remember the past conversation).
+Create a `.env` file in the root directory and add your OpenAI API key. You can also add a Redis URL & Password if you want persistent chat history (e.g. for ChatGPT to remember the past conversation).
+
+**You can get your API key [here](https://platform.openai.com/account/api-keys) from the OpenAI dashboard.**
 
 ```bash
-OPENAI_API_KEY=sk-API_KEY_HERE #
-REDIS_URL=REDIS_URL_HERE # Optional, can be local or remote using Redis Labs, etc.
-REDIS_PASSWORD=REDIS_PASSWORD_HERE # Optional, if applicable
+OPENAI_API_KEY=xxx
+REDIS_URL=yyy # Optional, can be local or remote using Redis Labs, etc. Falls back to in-memory storage if not provided.
+REDIS_PASSWORD=zzz # Optional, only required if using a Redis instance.
 ```
 
 ## Development

@@ -2,6 +2,7 @@
 
 import { execSync } from 'child_process';
 import enquirer from 'enquirer';
+import chalk from 'chalk';
 import fs from 'fs';
 import path from 'path';
 
@@ -37,11 +38,12 @@ async function main() {
 
 		execSync('npm install', { stdio: 'inherit' });
 
-		console.log(`Success! Created ${response.projectName} at ${projectPath}`);
-		console.log('Inside that directory, you can run several commands:');
-		console.log('  npm run dev    Starts the development server.');
-		console.log('  npm run build  Builds the app for production.');
-		console.log('  npm run preview  Runs the built app in production mode.');
+		console.log(chalk.green(`\nSuccess! Created ${response.projectName} at ${projectPath}`));
+		console.log('\nTo get started, run the following commands:');
+		console.log(chalk.cyan(`  cd ${response.projectName}`));
+		console.log(chalk.cyan('  npm run dev'), '   Starts the development server. 🚀');
+		console.log(chalk.cyan('  npm run build'), ' Builds the app for production. 🏗️');
+		console.log(chalk.cyan('  npm run preview'), ' Runs the built app in production mode. 🌐');
 	} catch (error) {
 		console.error('Error:', error);
 	}
