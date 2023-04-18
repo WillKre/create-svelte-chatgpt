@@ -5,9 +5,9 @@
 Features include:
 
 - [ChatGPT](https://platform.openai.com/docs/api-reference) integration using [chatgpt-api](https://github.com/transitive-bullshit/chatgpt-api).
-- [Redis](https://redis.io/) for persistent chat history via [Keyv](https://github.com/jaredwray/keyv), falls back to in-memory storage if `REDIS_URL` is not provided in the `.env`.
+- [Keyv](https://github.com/jaredwray/keyv) for persistent chat history. Prioritises [Redis](https://redis.io/), falls back to in-memory storage if `REDIS_URL` is not provided in the `.env`.
 - [TailwindCSS](https://tailwindcss.com/) for styling / animations.
-- [Svelte Form Actions](https://kit.svelte.dev/docs/form-actions) utilized in the chat interface.
+- [Svelte Form Actions](https://kit.svelte.dev/docs/form-actions) utilised in the chat interface.
 
 ## Getting Started
 
@@ -17,9 +17,9 @@ Features include:
 npx create-svelte-chatgpt@latest
 ```
 
-### Configure ChatGPT
+### Add Environment Variable(s)
 
-Create a `.env` file in the root directory and add your OpenAI API key. You can also add a Redis URL & Password if you want persistent chat history (e.g. for ChatGPT to remember the past conversation).
+Create a `.env` file in the root directory and add your OpenAI API key.
 
 **You can get your API key [here](https://platform.openai.com/account/api-keys) from the OpenAI dashboard.**
 
