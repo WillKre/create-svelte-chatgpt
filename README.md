@@ -1,31 +1,42 @@
-# SvelteKit ChatGPT
+# Create Svelte ChatGPT
 
-Everything you need to build a ChatGPT powered Svelte project, powered by [SvelteKit](https://kit.svelte.dev/).
+**`create-svelte-chatgpt`** is a project generator for building [SvelteKit](https://kit.svelte.dev/) applications powered by [ChatGPT](https://platform.openai.com/docs/api-reference). It comes with a pre-built example chat interface and other common features integrated.
 
-Includes:
+Features include:
 
-- [ChatGPT](https://platform.openai.com/docs/api-reference)
-- [SvelteKit Form Actions](https://kit.svelte.dev/docs/form-actions)
-- [TailwindCSS](https://tailwindcss.com/)
+- [ChatGPT](https://platform.openai.com/docs/api-reference) integration using [chatgpt-api](https://github.com/transitive-bullshit/chatgpt-api).
+- [Redis](https://redis.io/) for persistent chat history via [Keyv](https://github.com/jaredwray/keyv).
+- [TailwindCSS](https://tailwindcss.com/) for styling.
+- [Svelte Form Actions](https://kit.svelte.dev/docs/form-actions) utilized in the chat interface.
 
 ## Getting Started
 
-Create a `.env` file in the root directory and add your ChatGPT API key, Redis URL, and Redis password:
+### Installation
 
 ```bash
-OPENAI_API_KEY=sk-API_KEY_HERE
-REDIS_URL=redis://localhost:6379
-REDIS_PASSWORD=redis_password_here
+npx create-svelte-chatgpt my-app
+cd my-app
+npm run dev # Your app will be running at http://localhost:5173/
 ```
 
-## Developing
+### Configure ChatGPT
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Create a `.env` file in the root directory and add your ChatGPT API key. You can also add a Redis URL and Redis password if you want persistent chat history (e.g. for ChatGPT to remember the past conversation).
+
+```bash
+OPENAI_API_KEY=sk-API_KEY_HERE #
+REDIS_URL=REDIS_URL_HERE # Optional, can be local or remote using Redis Labs, etc.
+REDIS_PASSWORD=REDIS_PASSWORD_HERE # Optional, if applicable
+```
+
+## Development
+
+To start a development server:
 
 ```bash
 npm run dev
 
-# or start the server and open the app in a new browser tab
+# Or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
 

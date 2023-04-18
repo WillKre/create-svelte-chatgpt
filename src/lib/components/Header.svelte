@@ -29,7 +29,7 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/WillKre/svelte-chatgpt">
+		<a href="https://github.com/WillKre/create-svelte-chatgpt">
 			<img src={github} alt="GitHub" />
 		</a>
 	</div>

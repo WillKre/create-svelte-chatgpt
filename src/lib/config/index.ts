@@ -7,7 +7,7 @@ export function createConfig() {
 		fullName: 'ChatGPT',
 		receiverImgSrc: receiverImg,
 		senderImgSrc: senderImg,
-		promptPrefix: '' // Eg. "Speak like Elon Musk: \n\n"
+		promptPrefix: '' // E.g. "Speak like Elon Musk: \n\n"
 	};
 }
 
