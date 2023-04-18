@@ -29,6 +29,11 @@ REDIS_URL=yyy # Optional, can be local or remote using Redis Labs, etc. Falls ba
 REDIS_PASSWORD=zzz # Optional, only required if using a Redis instance.
 ```
 
+## Demo
+
+https://user-images.githubusercontent.com/7396157/232921261-10ce3cf7-22fc-4348-8dc8-e994a59b8f67.mov
+
+
 ## Development
 
 To start a development server:
