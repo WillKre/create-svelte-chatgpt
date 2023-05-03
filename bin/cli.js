@@ -37,6 +37,11 @@ async function main() {
 		process.chdir(projectPath);
 
 		execSync('npm install', { stdio: 'inherit' });
+		execSync('git init', { stdio: 'inherit' });
+		execSync('git add -A', { stdio: 'inherit' });
+		execSync('git commit -m "initial commit"', {
+			stdio: 'inherit',
+		});
 
 		console.log(
 			chalk.green(
