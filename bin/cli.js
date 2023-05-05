@@ -3,7 +3,7 @@
 import { execSync } from 'child_process';
 import enquirer from 'enquirer';
 import chalk from 'chalk';
-import fs from 'fs';
+import fs from 'fs-extra';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -33,7 +33,7 @@ async function main() {
 	const templatePath = path.join(__dirname, '..', 'template');
 
 	try {
-		execSync(`cp -R ${templatePath}/. ${projectPath}`, { stdio: 'inherit' });
+		await fs.copy(templatePath, projectPath);
 		process.chdir(projectPath);
 
 		execSync('npm install', { stdio: 'inherit' });
