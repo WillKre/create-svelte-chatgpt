@@ -33,9 +33,22 @@ async function main() {
 	const templatePath = path.join(__dirname, '..', 'template');
 
 	try {
+		// Copies the entire contents of the template directory to the new project directory
 		await fs.copy(templatePath, projectPath);
+
+		// Copies the 'gitignore' file from the new project directory to the same directory as '.gitignore'
+		fs.copyFileSync(
+			path.join(projectPath, 'gitignore'),
+			path.join(projectPath, '.gitignore'),
+		);
+
+		// Removes the 'gitignore' file from the new project directory after renaming it to '.gitignore'
+		fs.unlinkSync(path.join(projectPath, 'gitignore'));
+
+		// Changes the current working directory to the new project directory
 		process.chdir(projectPath);
 
+		// Installs the dependencies, initializes Git, and makes the initial commit
 		execSync('npm install', { stdio: 'inherit' });
 		execSync('git init', { stdio: 'inherit' });
 		execSync('git add -A', { stdio: 'inherit' });

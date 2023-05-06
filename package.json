@@ -1,6 +1,6 @@
 {
 	"name": "create-svelte-chatgpt",
-	"version": "0.2.6",
+	"version": "0.2.9",
 	"bin": {
 		"create-svelte-chatgpt": "./bin/cli.js"
 	},
