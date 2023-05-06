@@ -9,30 +9,30 @@ import { getMessageStore } from '$lib/utils/getMessageStore';
 const messageStore = getMessageStore();
 
 export const actions: Actions = {
-	default: async ({ request }) => {
-		const formData = await request.formData();
-		const message = formData.get('message');
-		const parentMessageId = formData.get('parentMessageId');
+  default: async ({ request }) => {
+    const formData = await request.formData();
+    const message = formData.get('message');
+    const parentMessageId = formData.get('parentMessageId');
 
-		const api = new ChatGPTAPI({
-			apiKey: OPENAI_API_KEY,
-			messageStore
-		});
+    const api = new ChatGPTAPI({
+      apiKey: OPENAI_API_KEY,
+      messageStore
+    });
 
-		const prompt = `${config.promptPrefix}${message}`;
+    const prompt = `${config.promptPrefix}${message}`;
 
-		try {
-			const chatMessage = await oraPromise(
-				api.sendMessage(prompt, {
-					parentMessageId: `${parentMessageId}`
-				})
-			);
+    try {
+      const chatMessage = await oraPromise(
+        api.sendMessage(prompt, {
+          parentMessageId: `${parentMessageId}`
+        })
+      );
 
-			return chatMessage;
-		} catch (err) {
-			if (err instanceof ChatGPTError) {
-				throw error(err.statusCode || 400, err.message);
-			}
-		}
-	}
+      return chatMessage;
+    } catch (err) {
+      if (err instanceof ChatGPTError) {
+        throw error(err.statusCode || 400, err.message);
+      }
+    }
+  }
 };

@@ -1,13 +1,13 @@
 {
-	"name": "create-svelte-chatgpt",
-	"version": "0.2.9",
-	"bin": {
-		"create-svelte-chatgpt": "./bin/cli.js"
-	},
-	"dependencies": {
-		"chalk": "^5.2.0",
-		"enquirer": "^2.3.6",
-		"fs-extra": "^11.1.1"
-	},
-	"type": "module"
+  "name": "create-svelte-chatgpt",
+  "version": "0.2.11",
+  "bin": {
+    "create-svelte-chatgpt": "./bin/cli.js"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "enquirer": "^2.3.6",
+    "fs-extra": "^11.1.1"
+  },
+  "type": "module"
 }
