@@ -8,7 +8,7 @@
       e.preventDefault();
 
       if (e.target instanceof HTMLTextAreaElement) {
-        e?.target?.form?.dispatchEvent(new Event('submit'));
+        e?.target?.form?.requestSubmit();
       }
     }
   }}
