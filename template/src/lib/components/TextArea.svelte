@@ -1,3 +1,7 @@
+<script>
+  export let input;
+</script>
+
 <textarea
   on:keydown={(e) => {
     const shiftEnter = e.shiftKey && e.key === 'Enter';
@@ -12,6 +16,7 @@
       }
     }
   }}
+  bind:value={$input}
   name="message"
   autocomplete="off"
   placeholder="Write your message!"

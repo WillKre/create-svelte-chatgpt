@@ -8,8 +8,8 @@
 
   <p>
     This is a <a href="https://kit.svelte.dev">SvelteKit</a> app with built-in support for
-    <a href="https://tailwindcss.com">TailwindCSS</a> and
-    <a href="https://openai.com/api/">ChatGPT</a>. You can make your own by typing the following
+    <a href="https://openai.com/api/">ChatGPT</a> and
+    <a href="https://tailwindcss.com">TailwindCSS</a>. You can make your own by typing the following
     into your command line and following the prompts:
   </p>
 
@@ -21,21 +21,19 @@
     the devtools network panel and reloading.
   </p>
 
-  <h2 class="mt-4 mb-4 font-bold">TailwindCSS</h2>
-  <p>
-    TailwindCSS is a utility-first CSS framework that allows you to build custom designs quickly and
-    easily. It comes preconfigured in this app, allowing you to use its utility classes to style
-    your components.
-  </p>
-
   <h2 class="mt-4 mb-4 font-bold">ChatGPT</h2>
   <p>
     ChatGPT is a powerful language model developed by OpenAI. This app leverages ChatGPT to provide
     AI-powered conversation and content generation capabilities. To interact with ChatGPT, we're
     using the
-    <a href="https://github.com/transitive-bullshit/chatgpt-api">chatgpt-api</a> package through the
-    use of
-    <a href="https://kit.svelte.dev/docs/form-actions">Svelte Form Actions</a> and Redis (via
-    <a href="https://github.com/jaredwray/keyv">Keyv</a>) to achieve persistance.
+    <a href="https://github.com/vercel-labs/ai">AI</a> package by Vercel. Read more about their SDK
+    <a href="https://sdk.vercel.ai/docs">here</a>.
+  </p>
+
+  <h2 class="mt-4 mb-4 font-bold">TailwindCSS</h2>
+  <p>
+    TailwindCSS is a utility-first CSS framework that allows you to build custom designs quickly and
+    easily. It comes preconfigured in this app, allowing you to use its utility classes to style
+    your components.
   </p>
 </div>

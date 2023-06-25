@@ -4,10 +4,8 @@
 
 Features include:
 
-- [ChatGPT](https://platform.openai.com/docs/api-reference) integration using [chatgpt-api](https://github.com/transitive-bullshit/chatgpt-api).
-- [Keyv](https://github.com/jaredwray/keyv) for persistent chat history. Prioritises [Redis](https://redis.io/), falls back to in-memory storage if `REDIS_URL` is not provided in the `.env`.
-- [TailwindCSS](https://tailwindcss.com/) for styling / animations.
-- [Svelte Form Actions](https://kit.svelte.dev/docs/form-actions) utilised in the chat interface.
+- [ChatGPT](https://platform.openai.com/docs/api-reference) integration using Vercel's [AI](https://github.com/vercel-labs/ai) package, which allows for streamed responses.
+- Chat interface using [TailwindCSS](https://tailwindcss.com/) for styling / animations.
 
 ## Getting Started
 
@@ -25,13 +23,11 @@ Create a `.env` file in the root directory and add your OpenAI API key.
 
 ```bash
 OPENAI_API_KEY=xxx
-REDIS_URL=yyy # Optional, can be local or remote using Redis Labs, etc. Falls back to in-memory storage if not provided.
-REDIS_PASSWORD=zzz # Optional, only required if using a Redis instance.
 ```
 
 ## Demo
 
-https://user-images.githubusercontent.com/7396157/232921261-10ce3cf7-22fc-4348-8dc8-e994a59b8f67.mov
+https://github.com/WillKre/create-svelte-chatgpt/assets/7396157/de9897bb-28e3-4e71-b142-7ce81afdd264
 
 ## Development
 

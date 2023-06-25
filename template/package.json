@@ -12,11 +12,8 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "dependencies": {
-    "@keyv/redis": "^2.5.7",
-    "chatgpt": "^5.2.2",
-    "ioredis": "^5.3.2",
-    "keyv": "^4.5.2",
-    "ora": "^6.3.0"
+    "ai": "^2.1.8",
+    "openai-edge": "^1.1.0"
   },
   "devDependencies": {
     "@fontsource/fira-mono": "^4.5.10",
